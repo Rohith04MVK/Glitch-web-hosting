@@ -5,7 +5,7 @@
     <style>
         .button {
             border-radius: 4px;
-            background-color: #f41e1e;
+            background-color: green;
             border: none;
             color: #FFFFFF;
             text-align: center;
@@ -16,28 +16,66 @@
             cursor: pointer;
             margin: 5px;
         }
+
+        #jumbotron {
+        	padding:2rem 1rem;
+        	margin-bottom:2rem;
+        	background-color:#e9ecef;
+        	border-radius:.3rem;
+        	margin-left: 300px;
+        	margin-right: 300px;
+        }
     </style>
 </head>
 
 <head>
     <title> Menu </title>
-    <h1 style="font-size: 1cm; color:yellowgreen;font-family: Georgia, 'Times New Roman', Times, serif;font-size: 1cm;">Enter the Pizza you
-        would like to order</h1>
-    {% for k, v in pizzas.items() %} 
-        <h1 style="font-size: 1cm; color:yellow;font-family: Georgia, 'Times New Roman', Times, serif;">{{k}}: {{v}}₹
-        </h1>
-    {% endfor %}
+    <h1 
+    style="
+    font-size: 1cm; 
+    color: #15f2fd;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;font-size: 1cm;
+    ">
+		Enter the Pizza you would like to order
+	</h1>
+    
+    <div id="jumbotron">
+    	{% for k, v in pizzas.items() %} 
+	        <h1 style="
+	        font-size: 1cm; 
+	        color: 	#40E0D0;
+	        text-align: center;
+	        font-family: Georgia, 'Times New Roman', Times, serif;
+	        ">{{k}}: {{v}}₹
+	        </h1>
+    	{% endfor %}
+    </div>
+    
     <form method="POST", action="{{ url_for('menu') }}">
         {{ form.csrf_token }}
-        <h1 style="font-size: 1cm; color:yellow;font-family: Georgia, 'Times New Roman', Times, serif;">
-        {{ form.pizza.label }}
-        {{ form.pizza }} </h1>
-        <ul style="color: red; size: 0.5cm;">
-            {% for error in form.pizza.errors %}
-            <b>{{error}}</b>
-            {% endfor %}
+        <h1 
+	        style="
+	        font-size: 1cm; 
+	        text-align: center;
+	        color:yellow;font-family: Georgia, 'Times New Roman', Times, serif;
+        ">
+        	{{ form.pizza.label }} {{ form.pizza }} 
+        </h1>
+        
+        <ul style="color: red; size: 0.5cm; text-align: center;">
+        	{% if form.pizza.errors %}
+        		{% for error in form.pizza.errors %}
+	            	<b>{{error}}</b>
+	            {% endfor %}
+        	{% endif %}
         </ul>
-        <input style="align-items: center;" type="submit" class="button" value='Order'>
+
+        <input style="
+        	align-items: center;
+        	margin-left: 550px;
+        	margin-top: 20px;
+        " type="submit" class="button" value='Order'>
     </form>
 </head>
 
