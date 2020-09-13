@@ -7,6 +7,9 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+    	body {
+    		font-family: sans-serif;
+    	}
         .button {
             border-radius: 4px;
             background-color: #f41e1e;
@@ -19,21 +22,43 @@
             transition: all 0.5s;
             cursor: pointer;
             margin: 5px;
+            margin-left: 500px;
+            margin-top: 100px;
+        }
+
+        #center {
+        	color: white;
+        	text-align: center;
+        }
+
+        #center-id {
+        	margin-left: 500px;
+            margin-top: 100px;
+        }
+
+        #white {
+        	color: white;
         }
     </style>
 </head>
 
 <body>
-    <h1>Please enter your pincode</h1>
+    <h1 id="center">Please enter your pincode</h1>
     <form method="POST" action="{{ url_for('form') }}">
         {{ form.hidden_tag() }}
         {{ form.csrf_token }}
-        <h1>{{ form.pincode.label }}
-        {{ form.pincode }}</h1>
+        
+        <h1 id="center-id" >
+        	<div id="white">
+        		{{ form.pincode.label }} {{ form.pincode }}
+        	</div>
+        </h1>
         <ul style="color: red;">
-    {% for error in form.pincode.errors %}
-        <h2><b>{{error}}</b></h2>
-    {% endfor %}
+		    {% for error in form.pincode.errors %}
+		        <h2>
+		            <b>{{error}}</b>
+		        </h2>
+		    {% endfor %}
         </ul>
         <input class="button" type="submit" value='Submit'>
     </form>
